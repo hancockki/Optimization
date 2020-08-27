@@ -1,0 +1,628 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     27882,        620]
+NotebookOptionsPosition[     25546,        571]
+NotebookOutlinePosition[     26007,        590]
+CellTagsIndexPosition[     25964,        587]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["MP13", "Title",
+ CellChangeTimes->{{3.440169197397166*^9, 3.4401691981472907`*^9}, {
+   3.4402365295919275`*^9, 3.4402365297950563`*^9}, 3.4402427559165154`*^9, 
+   3.4402456950041947`*^9, {3.440418174156435*^9, 3.440418175000207*^9}, {
+   3.4407780029413157`*^9, 3.4407780100982523`*^9}, {3.440779304817178*^9, 
+   3.4407793073328676`*^9}, {3.440780324765163*^9, 3.440780326905843*^9}, {
+   3.763583380691138*^9, 3.763583381793759*^9}, 3.76391195019219*^9, 
+   3.763912363099621*^9},ExpressionUUID->"0e32280c-2a45-4369-8c5e-\
+e6daec003dd3"],
+
+Cell["\<\
+Variables:  reg,premium = gallons of regular and premium gas produced
+\tingredients1-6= ing1, ing2, ing3, ing4, ing5, ing6 for both regular and \
+premium gas\
+\>", "Subtitle",
+ CellChangeTimes->{{3.4407780390385303`*^9, 3.4407780929008856`*^9}, {
+  3.4407788808375745`*^9, 3.440778884884553*^9}, {3.440779321505105*^9, 
+  3.440779328614662*^9}, {3.4407803422031097`*^9, 3.44078039495446*^9}, {
+  3.763583440426917*^9, 3.763583464444957*^9}, {3.763583496936214*^9, 
+  3.7635835196445813`*^9}, {3.763583667632211*^9, 3.763583707925383*^9}, {
+  3.7635837391453*^9, 3.763583759882225*^9}, {3.763583919649129*^9, 
+  3.7635839198749094`*^9}, {3.763911418221039*^9, 
+  3.763911426196701*^9}},ExpressionUUID->"172c9bd2-6d10-4165-8200-\
+dbe82a8bdd84"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"vars", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "reg", ",", " ", "prem", ",", " ", "ing1reg", ",", "ing2reg", ",", 
+     "ing3reg", ",", "ing4reg", ",", "ing5reg", ",", "ing6reg", ",", 
+     "ing1prem", ",", "ing2prem", ",", "ing3prem", ",", "ing4prem", ",", 
+     "ing5prem", ",", "ing6prem"}], "  ", "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4407780559614944`*^9, 3.4407780572584357`*^9}, 
+   3.4407786736916466`*^9, {3.4407793393961883`*^9, 3.440779348880806*^9}, 
+   3.44078033656234*^9, {3.7635839283425827`*^9, 3.763583937609599*^9}, {
+   3.7635842296588097`*^9, 3.763584268275114*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"a0d8249d-59a7-4c80-8faf-b2f23a3810a1"],
+
+Cell[CellGroupData[{
+
+Cell["Objective:  Profit from gas sold, both regular and premium", "Subtitle",
+ CellChangeTimes->{{3.4407780390385303`*^9, 3.4407781242306147`*^9}, {
+  3.440778442183137*^9, 3.44077849735713*^9}, {3.4407795518078756`*^9, 
+  3.4407796502322702`*^9}, {3.440780811152614*^9, 3.440780818215295*^9}, {
+  3.763911405663619*^9, 
+  3.7639114142676115`*^9}},ExpressionUUID->"cdd8b980-839b-4295-8e75-\
+2e27d136567f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"objective", "=", 
+   RowBox[{
+    RowBox[{"3600", "reg"}], "+", 
+    RowBox[{"4000", "prem"}]}]}], ";"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.4401702281900635`*^9, 3.440170229815323*^9}, {
+   3.440236542810931*^9, 3.4402365504360776`*^9}, {3.440236701439211*^9, 
+   3.440236828895599*^9}, {3.4402369221323605`*^9, 3.440237168059231*^9}, {
+   3.440237254670268*^9, 3.4402372937022676`*^9}, {3.4402375214410152`*^9, 
+   3.440237542285166*^9}, 3.440237631208748*^9, {3.4402377475859823`*^9, 
+   3.440237750539164*^9}, {3.4402382705335226`*^9, 3.4402382791743135`*^9}, {
+   3.440238311706188*^9, 3.4402383616915226`*^9}, {3.44023859824294*^9, 
+   3.440238612258834*^9}, {3.440238646696995*^9, 3.440238691479105*^9}, {
+   3.4402427589946995`*^9, 3.4402432577542753`*^9}, {3.4402433134584703`*^9, 
+   3.440243345584087*^9}, {3.44024348114919*^9, 3.4402436996065087`*^9}, {
+   3.440243822249489*^9, 3.440243836859144*^9}, {3.440243883375662*^9, 
+   3.440243904001058*^9}, {3.440243934454768*^9, 3.440243947798774*^9}, {
+   3.4402457746150985`*^9, 3.4402460219479723`*^9}, {3.440246064745669*^9, 
+   3.440246283687372*^9}, {3.4402463218443546`*^9, 3.4402466944921346`*^9}, {
+   3.4402467509932194`*^9, 3.4402468039161105`*^9}, {3.440246837635508*^9, 
+   3.4402468730893135`*^9}, {3.4402469219340014`*^9, 
+   3.4402469849195857`*^9}, {3.4402470259984994`*^9, 3.440247068874323*^9}, {
+   3.4402471025155935`*^9, 3.440247135000592*^9}, 3.4407796611856756`*^9, 
+   3.440780827856167*^9, {3.763583878599273*^9, 3.763583884126917*^9}, {
+   3.763911236608347*^9, 3.763911242072071*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"d422df9c-4903-47de-affc-9ebb480f569e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Constraints: for the summer", "Subtitle",
+ CellChangeTimes->{{3.4407780390385303`*^9, 3.4407781242306147`*^9}, {
+  3.440778891134713*^9, 3.4407788990411654`*^9}, {3.7639123558430285`*^9, 
+  3.7639123583074355`*^9}},ExpressionUUID->"45b12cec-2256-43b9-8837-\
+b29bf16405bb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"constraints", "=", "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{"non", "-", 
+      RowBox[{"negative", " ", "gallons", " ", "of", " ", "gas"}]}], " ", 
+     "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"0", "\[LessEqual]", " ", "ing1reg"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing2reg"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing3reg"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing4reg"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing5reg"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing6reg"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing1prem"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing2prem"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing3prem"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing4prem"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing5prem"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", "ing6prem"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", 
+      RowBox[{"ing1reg", "+", "ing1prem"}], "\[LessEqual]", " ", 
+      RowBox[{"16113", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", 
+      RowBox[{"ing2reg", "+", "ing2prem"}], "\[LessEqual]", " ", 
+      RowBox[{"14505", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", 
+      RowBox[{"ing3reg", "+", "ing3prem"}], "\[LessEqual]", " ", 
+      RowBox[{"7083", "/", "1000"}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", 
+      RowBox[{"ing4reg", "+", "ing4prem"}], "\[LessEqual]", " ", 
+      RowBox[{"2430", " ", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", 
+      RowBox[{"ing5reg", "+", "ing5prem"}], " ", "\[LessEqual]", " ", 
+      RowBox[{"576", " ", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+     RowBox[{"0", "\[LessEqual]", " ", 
+      RowBox[{"ing6reg", "+", "ing6prem"}], "\[LessEqual]", " ", 
+      RowBox[{"68452", "/", "1000"}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "RVP", " ", "of", " ", "regular", " ", "and", " ", "premium", " ", 
+       "gas", " ", "must", " ", "be", " ", "less", " ", "than", " ", "7.8", 
+       " ", "in", " ", "the", " ", "summer"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"3.22", "ing1reg"}], "+", 
+       RowBox[{"3.37", "ing2reg"}], "+", 
+       RowBox[{"11.43", "ing3reg"}], "+", 
+       RowBox[{"5.12", "ing4reg"}], "+", 
+       RowBox[{"4.97", "ing5reg"}], "+", 
+       RowBox[{"57.3", "ing6reg"}]}], " ", "\[LessEqual]", " ", 
+      RowBox[{"7.8", 
+       RowBox[{"(", "reg", ")"}]}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"3.22", "ing1prem"}], "+", 
+       RowBox[{"3.37", "ing2prem"}], "+", 
+       RowBox[{"11.43", "ing3prem"}], "+", 
+       RowBox[{"5.12", "ing4prem"}], "+", 
+       RowBox[{"4.97", "ing5prem"}], "+", 
+       RowBox[{"57.3", "ing6prem"}]}], "  ", "\[LessEqual]", " ", 
+      RowBox[{"7.8", 
+       RowBox[{"(", "prem", ")"}]}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "The", " ", "AKI", " ", "must", " ", "be", " ", "greater", " ", "than", 
+       " ", "91", " ", "for", " ", "premium"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"91", 
+       RowBox[{"(", "prem", ")"}]}], " ", "\[LessEqual]", " ", 
+      RowBox[{
+       RowBox[{"95.25", "ing1prem"}], " ", "+", " ", 
+       RowBox[{"90.65", "ing2prem"}], " ", "+", " ", 
+       RowBox[{"84.05", "ing3prem"}], "+", 
+       RowBox[{"94.1", "ing4prem"}], "+", 
+       RowBox[{"112.05", "ing5prem"}], "+", 
+       RowBox[{"95.35", "ing6prem"}]}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "AKI", " ", "must", " ", "be", " ", "between", " ", "87", " ", "and", 
+       " ", "90", " ", "for", " ", "regular"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"87", 
+       RowBox[{"(", "reg", ")"}]}], "\[LessEqual]", " ", 
+      RowBox[{
+       RowBox[{"95.25", "ing1reg"}], " ", "+", " ", 
+       RowBox[{"90.65", "ing2reg"}], "+", " ", 
+       RowBox[{"84.05", "ing3reg"}], "+", 
+       RowBox[{"94.1", "ing4reg"}], "+", 
+       RowBox[{"112.05", "ing5reg"}], "+", 
+       RowBox[{"95.35", "ing6reg"}]}], " ", "\[LessEqual]", " ", 
+      RowBox[{"90", 
+       RowBox[{"(", "reg", ")"}]}]}], "&&", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "ingredient", " ", "2", " ", "cannot", " ", "be", " ", "more", " ", 
+       "than", " ", "10", "%", " ", "of", " ", "total"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"10", 
+       RowBox[{"(", "ing2reg", ")"}]}], "\[LessEqual]", " ", "reg"}], " ", "&&",
+      "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"10", 
+       RowBox[{"(", "ing2prem", ")"}]}], " ", "\[LessEqual]", " ", "prem"}], 
+     " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "total", " ", "gallons", " ", "of", " ", "regular", " ", "and", " ", 
+       "premium", " ", "gas", " ", "sold", " ", "equals", " ", "sum", " ", 
+       "of", " ", "all", " ", "6", " ", "ingredients"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"reg", "\[Equal]", 
+      RowBox[{
+      "ing1reg", "+", "ing2reg", "+", "ing3reg", "+", "ing4reg", "+", 
+       "ing5reg", "+", "ing6reg"}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"prem", " ", "\[Equal]", " ", 
+      RowBox[{
+      "ing1prem", "+", "ing2prem", "+", "ing3prem", "+", "ing4prem", "+", 
+       "ing5prem", "+", "ing6prem"}]}], " ", "&&", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "demand", " ", "for", " ", "both", " ", "regular", " ", "and", " ", 
+       "premium", " ", "gas"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"reg", "\[GreaterEqual]", " ", "7.6"}], " ", "&&", 
+     "\[IndentingNewLine]", 
+     RowBox[{"prem", " ", "\[GreaterEqual]", " ", "2.1"}]}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdy1kowwEAx/GZKVGS24NzD46SPTD652g58+AqWWm0sSI5J0YyPMg5TX9N
+U2KuaCHn8jBqhjSbNXlBIzlWyxSRI/x//4dfn34P3whRQ7GYyWAw2NTgx+OQ
+RK+28yRd6R1wWPEig8s5gQrIsdhIOFVar4RpzUw1/cPMm3BvrdDzgFLK3fWC
+G7oZX/h84RMJOcMhcmhaj5yHCcTQEnSvkO1Bo6vh9I7S4cI8g92/fudQ2EXQ
+yuX89jYPB69doaa9+r4ZgNLXURJW1WkmYI2dNQnrNdmzkPH2sg3F1kYD3QXw
+j2HTjt0KrZJgG9QVBb3Bfmcx7QqZ6iqlTOlUuUH2s4UH+1xUuVAwMFgERc5r
+PownTkbgSE6PHBrfuST8c5qVdMcJn4WmpLE5GLomeiIpNeurtNHOqTw9pbdp
+vwzyC7KE0LjNroY3KkMTZGVWtsLdc70M5oq1o/DBtqiEX3njKui/dTUNfT4F
+m1Bb0mKAuvKfI5ifOBnt6+ngEZdRMTB2sDUOmomJZHh7kiEMpOxtvK+Fi2Os
+BZh8KKD9B8mZHYg=
+  "],
+ CellLabel->"In[34]:=",ExpressionUUID->"8c77d4a5-1720-4fbd-bd43-48a20b505958"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ "'s solution"
+}], "Subtitle",ExpressionUUID->"ede95e37-e871-452c-924e-d0fa7505301e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Maximize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"objective", ",", "constraints"}], "}"}], ",", "vars"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.440169944660331*^9, 3.440169947926478*^9}, {
+   3.440238159406389*^9, 3.44023815970327*^9}, {3.440245743083243*^9, 
+   3.440245749802122*^9}, {3.440246826275915*^9, 3.440246845620036*^9}, {
+   3.440246881980109*^9, 3.440246949872038*^9}, {3.440246988325901*^9, 
+   3.4402470051387243`*^9}, {3.4402470486708097`*^9, 
+   3.4402471252347794`*^9}, {3.440778049351781*^9, 3.440778050664348*^9}, {
+   3.440778133418585*^9, 3.4407781354343133`*^9}, {3.440778680894956*^9, 
+   3.4407786812387147`*^9}, {3.440779676279812*^9, 3.4407796766860723`*^9}, 
+   3.530442397722596*^9, 3.530462042606083*^9, 3.7009019666118326`*^9, 
+   3.7009195474152174`*^9, {3.763739381015294*^9, 3.7637393850088835`*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"d32a4d0d-99a8-4939-b617-788b0f62d222"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"119682.26449316437`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"reg", "\[Rule]", "7.6`"}], ",", 
+     RowBox[{"prem", "\[Rule]", "23.080566123291092`"}], ",", 
+     RowBox[{"ing1reg", "\[Rule]", "2.614177831912304`"}], ",", 
+     RowBox[{"ing2reg", "\[Rule]", "0.76`"}], ",", 
+     RowBox[{"ing3reg", "\[Rule]", "4.225822168087697`"}], ",", 
+     RowBox[{"ing4reg", "\[Rule]", "0.`"}], ",", 
+     RowBox[{"ing5reg", "\[Rule]", "0.`"}], ",", 
+     RowBox[{"ing6reg", "\[Rule]", "0.`"}], ",", 
+     RowBox[{"ing1prem", "\[Rule]", "13.498822168087697`"}], ",", 
+     RowBox[{"ing2prem", "\[Rule]", "2.308056612329109`"}], ",", 
+     RowBox[{"ing3prem", "\[Rule]", "2.857177831912304`"}], ",", 
+     RowBox[{"ing4prem", "\[Rule]", "2.43`"}], ",", 
+     RowBox[{"ing5prem", "\[Rule]", "0.576`"}], ",", 
+     RowBox[{"ing6prem", "\[Rule]", "1.4105095109619787`"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.440169948895383*^9, 3.440170342286441*^9, 3.4401704485221853`*^9, 
+   3.4402371500745106`*^9, {3.440237273045621*^9, 3.4402372969679556`*^9}, 
+   3.440237544894591*^9, 3.440237753289217*^9, 3.44023816023453*^9, {
+   3.440238274080466*^9, 3.4402382826900063`*^9}, {3.4402383147843723`*^9, 
+   3.440238363613435*^9}, {3.440238601180496*^9, 3.4402386145245023`*^9}, {
+   3.4402386524002295`*^9, 3.440238693776024*^9}, 3.440243241894596*^9, 
+   3.4402433486778965`*^9, {3.4402434909306273`*^9, 3.4402436264644794`*^9}, {
+   3.4402436565588074`*^9, 3.440243702887822*^9}, 3.44024384678121*^9, {
+   3.4402438923289595`*^9, 3.44024390589172*^9}, {3.4402439428768044`*^9, 
+   3.4402439539707675`*^9}, 3.4402471431882496`*^9, 3.4407786826450005`*^9, 
+   3.440779684670652*^9, 3.440780835059476*^9, {3.440844427875083*^9, 
+   3.440844453906*^9}, 3.530442398549396*^9, 3.530462042778083*^9, 
+   3.700901967186798*^9, 3.7637393731718707`*^9, 3.7637394606508093`*^9, 
+   3.7637395788040257`*^9, 3.763739784277435*^9, 3.7637398772948847`*^9, 
+   3.7637400960571914`*^9, 3.7637402371225605`*^9, {3.763902800798274*^9, 
+   3.7639028170498466`*^9}, 3.763902922820956*^9, 3.763911248124916*^9, 
+   3.763911783266135*^9, {3.7639122081803007`*^9, 3.7639122231013975`*^9}, {
+   3.763912301428502*^9, 3.763912323904395*^9}},
+ CellLabel->"Out[35]=",ExpressionUUID->"ae25454e-46b9-4de5-94b1-e3e8694f1834"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7639113686764994`*^9, 
+  3.7639113883529143`*^9}},ExpressionUUID->"44d89fe2-b624-48a8-a88b-\
+9b1bd08e7864"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7639112852406187`*^9, 3.7639113201024013`*^9}, {
+  3.7639113614658833`*^9, 3.7639113640179453`*^9}, {3.7639122744945745`*^9, 
+  3.7639122748276834`*^9}},ExpressionUUID->"15d7e9b6-d4f5-41e1-9b86-\
+df5cd34c35ff"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.763911529027625*^9, 3.7639115318760023`*^9}, {
+  3.7639117718427286`*^9, 3.76391180923473*^9}, {3.7639118592779036`*^9, 
+  3.7639118602582474`*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"c63b96e0-6d88-48da-b791-538e1d6d5f7d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Syntax","tsntxi",
+   "\"\\\"\\!\\(\\*RowBox[{\\\"constraints\\\", \\\"=\\\"}]\\)\\\" is \
+incomplete; more input is \
+needed.\\!\\(\\*RowBox[{\\\"\\\\\\\"\\\\\\\"\\\"}]\\)\"",2,21,4,
+   24150355690643954391,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{
+  3.7639118268834934`*^9, {3.7639122023039064`*^9, 3.7639122032244987`*^9}, {
+   3.76391226969783*^9, 
+   3.763912271315042*^9}},ExpressionUUID->"c737c656-16c9-43e0-8019-\
+f034e5b08df8"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Constraints", " ", "for", " ", "the", " ", "winter", " ", "are", " ", 
+    "below"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"constraints", " ", "=", " "}]}]], "Input",
+ CellChangeTimes->{{3.7639118432696695`*^9, 3.7639118469508667`*^9}, {
+  3.7639123412091284`*^9, 
+  3.7639123516133375`*^9}},ExpressionUUID->"52156451-3099-455e-ae3e-\
+e2cd1a5abd95"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"non", "-", 
+     RowBox[{
+     "negative", " ", "tons", " ", "of", " ", "raw", " ", "materials"}]}], 
+    ",", " ", 
+    RowBox[{"limited", " ", "by", " ", "availability"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"0", "\[LessEqual]", " ", "ing1reg"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing2reg"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing3reg"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing4reg"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing5reg"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing6reg"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing1prem"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing2prem"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing3prem"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing4prem"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing5prem"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", "ing6prem"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", 
+     RowBox[{"ing1reg", "+", "ing1prem"}], "\[LessEqual]", " ", 
+     RowBox[{"16113", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", 
+     RowBox[{"ing2reg", "+", "ing2prem"}], "\[LessEqual]", " ", 
+     RowBox[{"14505", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", 
+     RowBox[{"ing3reg", "+", "ing3prem"}], "\[LessEqual]", " ", 
+     RowBox[{"7083", "/", "1000"}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", 
+     RowBox[{"ing4reg", "+", "ing4prem"}], "\[LessEqual]", " ", 
+     RowBox[{"2430", " ", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", 
+     RowBox[{"ing5reg", "+", "ing5prem"}], " ", "\[LessEqual]", " ", 
+     RowBox[{"576", " ", "/", "1000"}]}], "&&", "\[IndentingNewLine]", 
+    RowBox[{"0", "\[LessEqual]", " ", 
+     RowBox[{"ing6reg", "+", "ing6prem"}], "\[LessEqual]", " ", 
+     RowBox[{"68452", "/", "1000"}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "RVP", " ", "of", " ", "regular", " ", "and", " ", "premium", " ", "gas",
+       " ", "must", " ", "be", " ", "less", " ", "than", " ", "9", " ", "in", 
+      " ", "the", " ", "winter"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"3.22", "ing1reg"}], "+", 
+      RowBox[{"3.37", "ing2reg"}], "+", 
+      RowBox[{"11.43", "ing3reg"}], "+", 
+      RowBox[{"5.12", "ing4reg"}], "+", 
+      RowBox[{"4.97", "ing5reg"}], "+", 
+      RowBox[{"57.3", "ing6reg"}]}], " ", "\[LessEqual]", " ", 
+     RowBox[{"9", 
+      RowBox[{"(", "reg", ")"}]}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"3.22", "ing1prem"}], "+", 
+      RowBox[{"3.37", "ing2prem"}], "+", 
+      RowBox[{"11.43", "ing3prem"}], "+", 
+      RowBox[{"5.12", "ing4prem"}], "+", 
+      RowBox[{"4.97", "ing5prem"}], "+", 
+      RowBox[{"57.3", "ing6prem"}]}], "  ", "\[LessEqual]", " ", 
+     RowBox[{"9", 
+      RowBox[{"(", "prem", ")"}]}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "The", " ", "AKI", " ", "must", " ", "be", " ", "greater", " ", "than", 
+      " ", "91", " ", "for", " ", "premium"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"91", 
+      RowBox[{"(", "prem", ")"}]}], " ", "\[LessEqual]", " ", 
+     RowBox[{
+      RowBox[{"95.25", "ing1prem"}], " ", "+", " ", 
+      RowBox[{"90.65", "ing2prem"}], " ", "+", " ", 
+      RowBox[{"84.05", "ing3prem"}], "+", 
+      RowBox[{"94.1", "ing4prem"}], "+", 
+      RowBox[{"112.05", "ing5prem"}], "+", 
+      RowBox[{"95.35", "ing6prem"}]}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "AKI", " ", "must", " ", "be", " ", "between", " ", "87", " ", "and", 
+      " ", "90", " ", "for", " ", "regular"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"87", 
+      RowBox[{"(", "reg", ")"}]}], "\[LessEqual]", " ", 
+     RowBox[{
+      RowBox[{"95.25", "ing1reg"}], " ", "+", " ", 
+      RowBox[{"90.65", "ing2reg"}], "+", " ", 
+      RowBox[{"84.05", "ing3reg"}], "+", 
+      RowBox[{"94.1", "ing4reg"}], "+", 
+      RowBox[{"112.05", "ing5reg"}], "+", 
+      RowBox[{"95.35", "ing6reg"}]}], " ", "\[LessEqual]", " ", 
+     RowBox[{"90", 
+      RowBox[{"(", "reg", ")"}]}]}], "&&", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "ingredient", " ", "2", " ", "cannot", " ", "be", " ", "more", " ", 
+      "than", " ", "10", "%", " ", "of", " ", "total"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"10", 
+      RowBox[{"(", "ing2reg", ")"}]}], "\[LessEqual]", " ", "reg"}], " ", "&&",
+     "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"10", 
+      RowBox[{"(", "ing2prem", ")"}]}], " ", "\[LessEqual]", " ", "prem"}], 
+    " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "total", " ", "gallons", " ", "of", " ", "regular", " ", "and", " ", 
+      "premium", " ", "gas", " ", "sold", " ", "equals", " ", "sum", " ", 
+      "of", " ", "all", " ", "6", " ", "ingredients"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"reg", "\[Equal]", 
+     RowBox[{
+     "ing1reg", "+", "ing2reg", "+", "ing3reg", "+", "ing4reg", "+", 
+      "ing5reg", "+", "ing6reg"}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"prem", " ", "\[Equal]", " ", 
+     RowBox[{
+     "ing1prem", "+", "ing2prem", "+", "ing3prem", "+", "ing4prem", "+", 
+      "ing5prem", "+", "ing6prem"}]}], " ", "&&", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "demand", " ", "for", " ", "both", " ", "regular", " ", "and", " ", 
+      "premium", " ", "gas"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"reg", "\[GreaterEqual]", " ", "7.2"}], " ", "&&", 
+    "\[IndentingNewLine]", 
+    RowBox[{"prem", " ", "\[GreaterEqual]", " ", "1.9"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.763911666179654*^9, 3.763911677403678*^9}, {
+  3.763911746216226*^9, 3.7639117502097716`*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"c258ae04-100d-440c-a967-60f12f517b7d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"Maximize", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"objective", ",", "constraints"}], "}"}], ",", "vars"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7639116860904465`*^9, 3.7639116869212313`*^9}},
+ CellLabel->"In[37]:=",ExpressionUUID->"6a3017ad-d907-4361-b2d5-c01d7da4bedc"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"119682.26449316437`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"reg", "\[Rule]", "7.6`"}], ",", 
+     RowBox[{"prem", "\[Rule]", "23.080566123291092`"}], ",", 
+     RowBox[{"ing1reg", "\[Rule]", "2.614177831912304`"}], ",", 
+     RowBox[{"ing2reg", "\[Rule]", "0.76`"}], ",", 
+     RowBox[{"ing3reg", "\[Rule]", "4.225822168087697`"}], ",", 
+     RowBox[{"ing4reg", "\[Rule]", "0.`"}], ",", 
+     RowBox[{"ing5reg", "\[Rule]", "0.`"}], ",", 
+     RowBox[{"ing6reg", "\[Rule]", "0.`"}], ",", 
+     RowBox[{"ing1prem", "\[Rule]", "13.498822168087697`"}], ",", 
+     RowBox[{"ing2prem", "\[Rule]", "2.308056612329109`"}], ",", 
+     RowBox[{"ing3prem", "\[Rule]", "2.857177831912304`"}], ",", 
+     RowBox[{"ing4prem", "\[Rule]", "2.43`"}], ",", 
+     RowBox[{"ing5prem", "\[Rule]", "0.576`"}], ",", 
+     RowBox[{"ing6prem", "\[Rule]", "1.4105095109619787`"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.7639116920534596`*^9, 3.763911701670781*^9}, {
+   3.7639117541629696`*^9, 3.7639117900340776`*^9}, 3.7639118659371166`*^9, 
+   3.763912229107362*^9, 3.7639122930967836`*^9, 3.7639123330649023`*^9},
+ CellLabel->"Out[37]=",ExpressionUUID->"935f8d50-ec73-4f68-a3b8-7266405d0e2e"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+ScreenStyleEnvironment->"Condensed",
+WindowSize->{672, 747},
+WindowMargins->{{Automatic, 124}, {Automatic, 5}},
+PrintingCopies->1,
+PrintingPageRange->{Automatic, Automatic},
+Magnification->1.5,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 547, 8, 56, "Title",ExpressionUUID->"0e32280c-2a45-4369-8c5e-e6daec003dd3"],
+Cell[1117, 32, 752, 13, 125, "Subtitle",ExpressionUUID->"172c9bd2-6d10-4165-8200-dbe82a8bdd84"],
+Cell[1872, 47, 710, 13, 79, "Input",ExpressionUUID->"a0d8249d-59a7-4c80-8faf-b2f23a3810a1"],
+Cell[CellGroupData[{
+Cell[2607, 64, 406, 6, 39, "Subtitle",ExpressionUUID->"cdd8b980-839b-4295-8e75-2e27d136567f"],
+Cell[3016, 72, 1734, 27, 28, "Input",ExpressionUUID->"d422df9c-4903-47de-affc-9ebb480f569e",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4787, 104, 278, 4, 39, "Subtitle",ExpressionUUID->"45b12cec-2256-43b9-8837-b29bf16405bb"],
+Cell[5068, 110, 7121, 153, 1229, "Input",ExpressionUUID->"8c77d4a5-1720-4fbd-bd43-48a20b505958"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12226, 268, 150, 4, 39, "Subtitle",ExpressionUUID->"ede95e37-e871-452c-924e-d0fa7505301e"],
+Cell[CellGroupData[{
+Cell[12401, 276, 949, 16, 28, "Input",ExpressionUUID->"d32a4d0d-99a8-4939-b617-788b0f62d222"],
+Cell[13353, 294, 2344, 39, 148, "Output",ExpressionUUID->"ae25454e-46b9-4de5-94b1-e3e8694f1834"]
+}, Open  ]],
+Cell[15712, 336, 156, 3, 28, "Input",ExpressionUUID->"44d89fe2-b624-48a8-a88b-9b1bd08e7864"],
+Cell[15871, 341, 259, 4, 28, "Input",ExpressionUUID->"15d7e9b6-d4f5-41e1-9b86-df5cd34c35ff"],
+Cell[CellGroupData[{
+Cell[16155, 349, 276, 4, 28, "Input",ExpressionUUID->"c63b96e0-6d88-48da-b791-538e1d6d5f7d"],
+Cell[16434, 355, 546, 14, 29, "Message",ExpressionUUID->"c737c656-16c9-43e0-8019-f034e5b08df8"]
+}, Open  ]],
+Cell[16995, 372, 411, 10, 54, "Input",ExpressionUUID->"52156451-3099-455e-ae3e-e2cd1a5abd95"],
+Cell[17409, 384, 6486, 145, 1179, "Input",ExpressionUUID->"c258ae04-100d-440c-a967-60f12f517b7d"],
+Cell[CellGroupData[{
+Cell[23920, 533, 346, 8, 54, "Input",ExpressionUUID->"6a3017ad-d907-4361-b2d5-c01d7da4bedc"],
+Cell[24269, 543, 1237, 23, 148, "Output",ExpressionUUID->"935f8d50-ec73-4f68-a3b8-7266405d0e2e"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
